@@ -56,7 +56,7 @@ function PostData() {
 
     const navigate = useNavigate()
     const Notify = (id) => {
-       alert('Los Datos fueron cargados con el ID ' + `${id}` + ' Para checkearlos pulsar OK') 
+       alert('Los Datos fueron cargados con el ID ' + `${id}` + ' Para checkearlos pulsar ACEPTAR') 
             navigate('/datos/' + id);
 
     }
