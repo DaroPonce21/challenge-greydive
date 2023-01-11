@@ -56,28 +56,34 @@ function PostData() {
 
     const navigate = useNavigate()
     const Notify = (id) => {
-       alert('Los Datos fueron cargados con el ID ' + `${id}` + ' Para checkearlos pulsar ACEPTAR') 
+       alert('Los Datos fueron cargados con el ID ' + `${id}` + ' Para checkearlos pulsar OK') 
             navigate('/datos/' + id);
 
     }
     
     return (
-        <form onSubmit={e => handleSubmit(e)} className='card card-body'>
-            <fieldset>
-                <legend>Complete sus datos</legend>
+        <div className="row" style={{marginTop: "3rem"}}>
+            <div className="col-md-4"></div>
+            <div className="col-md-4">
+                <form onSubmit={e => handleSubmit(e)} className='card card-body'>
+            <fieldset >
+            <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
+                    <legend>Complete sus datos</legend>
                 {
                     data &&
                     data.length > 0 &&
                     data.map((item) =>
                         item.type === "select" ?
                             <fieldset className="form-group">
-                                <div className="form-group input-group">
-                                    <label className="col-sm-2 col-form-label">{item.label}</label>
+                                <div className="form-group">
+                                    <label className="form-label">{item.label}</label>
                                     <select
                                         placeholder={item.name}
                                         key={item.name}
                                         required={item.required}
-                                        className='form-select'
+                                        className='form-control'
                                         name={item.name}
                                         onChange={handleInputChange}
                                     >
@@ -93,40 +99,42 @@ function PostData() {
                                         )}
                                     </select>
                                 </div>
-                                <br></br>
+                                <br/>
                             </fieldset>
                             :
                             item.type === 'submit' ?
                                 <fieldset className="form-group">
-                                    <div className='form-group input-group'>
+                                    <div className='form-group'>
                                         <button
                                             type={item.type}
                                             className='btn btn-success'
+                                            style={{width:"100%", maxWidth:"500px"}}
                                         >
                                             {item.label}
                                         </button>
                                     </div>
-                                    <br></br>
+                                    
                                 </fieldset>
 
                                 :
                                 item.type === 'checkbox' ?
                                     <fieldset className="form-group">
-                                        <div className='form-group input-group'>
-                                            <label className="col-sm-2 col-form-label">{item.label}</label>
+                                        <div className='form-group'>
+                                            <label className="form-label">{item.label}</label>
                                             <input
                                                 name={item.name}
                                                 type={item.type}
                                                 required={item.required}
                                                 className="form-check-input"
                                                 onChange={handleInputChange}
+                                                style={{marginLeft:"5px"}}
                                             />
                                         </div>
                                     </fieldset>
                                     :
                                     <fieldset className="form-group">
-                                        <div className='form-group input-group'>
-                                            <label className="col-sm-2 col-form-label">{item.label}</label>
+                                        <div className='form-group '>
+                                            <label className="form-label">{item.label}</label>
                                             <input
                                                 key={item.name}
                                                 placeholder={item.label}
@@ -137,13 +145,23 @@ function PostData() {
                                                 onChange={handleInputChange}
                                             />
                                         </div>
-                                        <br></br>
-                                        <br></br>
+                                       
+                                        <br/>
                                     </fieldset>
                     )
                 }
+                <br/>
+                
+                </div>
+                <div className="col-md-1"></div>
+            </div>
+                
             </fieldset>
         </form>
+            </div>
+            <div className="col-md-4"></div>
+        </div>
+        
     );
 }
 
